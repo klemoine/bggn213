@@ -1,0 +1,8 @@
+---
+title: "Class10"
+author: "Kellie Lemoine"
+date: "May 3, 2019"
+output: github_document
+---
+
+Learned about github
