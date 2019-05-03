@@ -1,0 +1,253 @@
+---
+title: 'Class 8: Machine learning'
+author: "Kellie Lemoine"
+date: "April 26, 2019"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Kmeans clustering
+
+Let's try out the **kmeans()** function in R with some makeup data
+
+```{r}
+tmp <- c(rnorm(30,-3), rnorm(30,3))
+x <- cbind(x=tmp, y=rev(tmp))
+
+plot(x)
+```
+
+Use the Kmeans() function setting k to 2 and nstart=20
+
+```{r}
+km <- kmeans(x, centers = 2, 20)
+km
+```
+
+
+Inspect/print the results
+
+> How many points are in each cluster? 
+
+```{r}
+km$size
+table(km$cluster)
+```
+
+
+> Q. What ‘component’ of your result object details
+ - cluster size? nstart
+ - cluster assignment/membership?
+ - cluster center?
+
+```{r}
+km$centers
+```
+
+
+Plot x colored by the kmeans cluster assignment and
+ add cluster centers as blue points
+
+```{r}
+plot(x, col = km$cluster)
+points(km$centers, col = "blue", pch = 18, cex = 3)
+```
+
+## Hierarchial Clustering
+
+Here we don't have to spell out K the number of clusters before hand but we do have to give it a distance matrix
+
+```{r}
+d <- dist(x)
+hc <- hclust(dist(x))
+hc
+```
+
+Lets plot the results
+
+```{r}
+plot(hc)
+abline(h=6, col="red")
+cutree(hc, h= 6)
+```
+
+```{r}
+gp2 <- cutree(hc, k= 2)
+gp3 <- cutree(hc, k=2)
+```
+
+
+```{r}
+table(gp2)
+table(gp3)
+```
+
+```{r}
+table(gp2, gp3)
+```
+
+Try a more real-life example to see how our clustering works
+
+```{r}
+# Step 1. Generate some example data for clustering
+x <- rbind(
+ matrix(rnorm(100, mean=0, sd = 0.3), ncol = 2), # c1
+ matrix(rnorm(100, mean = 1, sd = 0.3), ncol = 2), # c2
+ matrix(c(rnorm(50, mean = 1, sd = 0.3), # c3
+ rnorm(50, mean = 0, sd = 0.3)), ncol = 2))
+colnames(x) <- c("x", "y")
+# Step 2. Plot the data without clustering
+plot(x)
+# Step 3. Generate colors for known clusters
+# (just so we can compare to hclust results)
+col <- as.factor( rep(c("c1","c2","c3"), each=50) )
+plot(x, col=col)
+```
+
+> Q. Use the dist(), hclust(), plot() and cutree()
+ functions to return 2 and 3 clusters
+
+```{r}
+#hc <- hclust(dist(x))
+#plot(hc)
+#abline(1.8)
+#cutree(hc, h = 2)
+```
+
+```{r}
+plot(x, col = gp3)
+```
+
+
+> Q. How does this compare to your known 'col' groups?
+
+
+
+Principal Component Analysis (PCA)
+
+We will use the base R **prcomp()** function for PCA today...
+
+Let's fet some RNASeq data to play with
+
+```{r}
+mydata <- read.csv("https://tinyurl.com/expression-CSV",
+ row.names=1)
+
+head(mydata) 
+```
+
+There are `r `nrow(mydata)` genes in this dataset
+
+```{r}
+pca <- prcomp( t(mydata), scale=TRUE)
+summary(pca) 
+```
+
+```{r}
+attributes(pca)
+```
+
+Let's make our first PCA plot
+
+```{r}
+plot(pca$x[,1], pca$x[,2])
+```
+
+```{r}
+## Precent variance is often more informative to look at
+pca.var <- pca$sdev^2
+pca.var.per <- round(pca.var/sum(pca.var)*100, 1)
+
+pca.var.per
+```
+
+```{r}
+plot(pca$x[,1], pca$x[,2], xlab = paste("PC1 (",pca.var.per[1],"%)", sep=""))
+```
+
+```{r}
+xlab <- paste("PC1 (",pca.var.per[1],"%)", sep="")
+ylab <- paste("PC2 (",pca.var.per[2],"%)", sep="")
+
+xlab
+ylab
+```
+
+```{r}
+mycols <- c( rep("red", 5), rep("blue", 5))
+```
+
+
+```{r}
+plot(pca$x[,1], pca$x[,2], xlab=xlab, ylab=ylab, col=mycols)
+text(pca$x[,1], pca$x[,2], colnames(mydata))
+```
+
+
+## Hands on activity
+
+```{r}
+
+x <- read.csv("UK_foods.csv", row.names = 1)
+
+nrow(x)
+ncol(x)
+
+```
+
+```{r}
+## call view function
+
+#View(x)
+```
+
+```{r}
+## Check dimensions
+
+dim(x)
+```
+
+```{r}
+## Generate a barplot of the data
+
+barplot(as.matrix(x), beside=T, col=rainbow(nrow(x)))
+```
+
+```{r}
+barplot(as.matrix(x), beside=F, col=rainbow(nrow(x)))
+```
+
+```{r}
+pairs(x, col=rainbow(10), pch=16)
+```
+
+```{r}
+pca <- prcomp( t(x) )
+summary(pca)
+```
+
+```{r}
+mycols <- c("orange", "red", "blue", "green")
+plot(pca$x[,1], pca$x[,2])
+text(pca$x[,1], pca$x[,2], colnames(x), col = mycols)
+abline(h=0, col="gray", lty=2)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
