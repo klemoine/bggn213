@@ -2,7 +2,7 @@
 title: "Class 7: R functions and packages"
 author: "Kellie Lemoine"
 date: "April 24, 2019"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -23,11 +23,11 @@ Test the ""rescale()** function
 rescale( 1:10 )
 ```
 
-```{r}
+```{r, eval=FALSE}
 rescale( c(1:10, "string"))
 ```
 
-```{r}
+```{r, eval=FALSE}
 x <-  c(1:10, "string")
 !is.numeric(x)
 ```
