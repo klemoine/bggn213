@@ -155,8 +155,8 @@ grade <- function(x) {
 ```
 
 ```{r}
-##grade(x)
-grade(student2)
+#grade(x)
+#grade(student2)
 ```
 
 ## Determine grades for the entire class
