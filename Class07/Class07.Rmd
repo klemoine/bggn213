@@ -33,7 +33,7 @@ x <-  c(1:10, "string")
 ```
 
 ```{r}
-rescale2(x)
+##rescale2(x)
 ```
 
 ## Function practice
@@ -155,7 +155,7 @@ grade <- function(x) {
 ```
 
 ```{r}
-grade(x)
+##grade(x)
 grade(student2)
 ```
 
