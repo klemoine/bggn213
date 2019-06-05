@@ -2,7 +2,11 @@
 
 This is my coursework from [BGGN-213 at UC San Diego] (https://bioboot.github.io/bggn213_S19/lectures/#10)
 
-I will add my class content here soon...
+My class content includes:
 
-I will start with class5 onward
+- Class 07: [R Functions and Packages] 
+(https://github.com/klemoine/bggn213/blob/master/Class07/Class07.md). 
+
+- Class 08: [Machine Learning] 
+(https://github.com/klemoine/bggn213/blob/master/Class08/Class08.md).
 
