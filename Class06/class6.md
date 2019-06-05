@@ -264,7 +264,7 @@ s1 <- read.pdb("4AKE") # kinase with drug
     ##   Note: Accessing on-line PDB file
 
     ## Warning in get.pdb(file, path = tempdir(), verbose = FALSE): /var/folders/
-    ## n0/dcnvrwqx7y1bmnx28rlv12q80000gp/T//RtmpAznbTy/4AKE.pdb exists. Skipping
+    ## n0/dcnvrwqx7y1bmnx28rlv12q80000gp/T//RtmpaQhd0A/4AKE.pdb exists. Skipping
     ## download
 
 ``` r
@@ -274,7 +274,7 @@ s2 <- read.pdb("1AKE") # kinase no drug
     ##   Note: Accessing on-line PDB file
 
     ## Warning in get.pdb(file, path = tempdir(), verbose = FALSE): /var/folders/
-    ## n0/dcnvrwqx7y1bmnx28rlv12q80000gp/T//RtmpAznbTy/1AKE.pdb exists. Skipping
+    ## n0/dcnvrwqx7y1bmnx28rlv12q80000gp/T//RtmpaQhd0A/1AKE.pdb exists. Skipping
     ## download
 
     ##    PDB has ALT records, taking A only, rm.alt=TRUE
@@ -286,7 +286,7 @@ s3 <- read.pdb("1E4Y") # kinase with drug
     ##   Note: Accessing on-line PDB file
 
     ## Warning in get.pdb(file, path = tempdir(), verbose = FALSE): /var/folders/
-    ## n0/dcnvrwqx7y1bmnx28rlv12q80000gp/T//RtmpAznbTy/1E4Y.pdb exists. Skipping
+    ## n0/dcnvrwqx7y1bmnx28rlv12q80000gp/T//RtmpaQhd0A/1E4Y.pdb exists. Skipping
     ## download
 
 ``` r
