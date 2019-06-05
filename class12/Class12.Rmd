@@ -1,0 +1,102 @@
+---
+title: "Class12"
+author: "Kellie Lemoine"
+date: "May 10, 2019"
+output: github_document
+---
+
+## Load bio3d and read 1HSG files
+
+```{r}
+library("bio3d")
+
+file <- get.pdb("1hsg")
+
+pdb <- read.pdb(file)
+```
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Trim files to protein and ligand only files and convert to PDB files
+
+```{r}
+##Select protein only
+
+prot <- atom.select(pdb, "protein", value = TRUE)
+
+prot
+
+write.pdb(prot, file = "1hsg_protein.pdb")
+```
+
+```{r}
+
+##Select ligand only
+lig <- atom.select(pdb, "ligand", value = TRUE)
+
+lig
+
+write.pdb(lig, file = "1hsg_ligand.pdb")
+```
+
+## Add hydrogens and charges in ADT
+
+We opened out protein only PDB file in AutoDoc tools and added hydrogens and atom-types needed for docking calculations
+
+## Run docking
+
+We will use AutoDoc Vina here at the UNIX command line!
+
+##Process results back into R
+
+```{r}
+res <- read.pdb("all.pdbqt", multi = TRUE)
+res
+write.pdb(res, file="results.pdb")
+```
+
+
+ Compare our docking poses to the MERK drug structure
+ 
+```{r}
+ori <- read.pdb("ligand.pdbqt")
+rmsd(ori, res)
+```
+ 
+ ## Normal Mode Analysis example
+ 
+```{r}
+pdb <- read.pdb("1hel")
+modes <- nma( pdb )
+m7 <- mktrj(modes, mode=7, file="mode_7.pdb")
+```
+
+```{r}
+plot(modes)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
