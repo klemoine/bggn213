@@ -1,0 +1,143 @@
+---
+title: "Class18"
+author: "Kellie Lemoine"
+date: "May 31, 2019"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(GenomicDataCommons)
+library(TCGAbiolinks)
+library(maftools)
+```
+
+```{r}
+library(GenomicDataCommons)
+status()
+```
+
+# Querying the GDC from R
+
+```{r}
+projects <- getGDCprojects()
+head(projects)
+```
+
+```{r}
+cases_by_project <- cases() %>%
+  facet("project.project_id") %>%
+  aggregations()
+head(cases_by_project)
+```
+
+```{r}
+x <- cases_by_project$project.project_id
+
+# Make a custom color vector for our plot
+colvec <- rep("lightblue", nrow(x))
+colvec[x$key == "TCGA-PAAD"] <- "red"
+
+# Plot with 'log' for y axis and rotate labels with 'las'
+#par(___)  
+barplot(x$doc_count, names.arg=x$key, log="y", col=colvec, las=2)
+```
+
+
+
+# Hands on Part 2
+
+```{r}
+library(bio3d)
+```
+
+
+```{r}
+seqs <- read.fasta("lecture18_sequences.fa")
+seqs
+```
+
+```{r}
+seqs$ali[,41]
+```
+
+```{r}
+start.ind <- 41 - 8
+end.ind <- 41 + 8
+
+sequence1 <- seqs$ali[, start.ind:end.ind]
+```
+
+```{r}
+seqs$ali[,65]
+```
+
+```{r}
+start.ind <- 65 - 8
+end.ind <- 65 + 8
+
+sequence2 <- seqs$ali[, start.ind:end.ind]
+```
+
+Find the sites (i.e. amino acids that are different)
+
+```{r}
+ide <- conserv(seqs, method="identity")
+mismatch.inds<- which(ide < 1)
+```
+
+Find the positions in mismatch.inds that are NOT in gap.inds
+
+```{r}
+gaps <- gap.inspect(seqs)
+gap.inds <- gaps$t.inds
+```
+
+```{r}
+tumor.sites <- mismatch.inds[!mismatch.inds %in% gap.inds]
+```
+
+```{r}
+seqs$ali[,tumor.sites]
+
+ids <- paste(seqs$ali[1,tumor.sites], tumor.sites,seqs$ali[2,tumor.sites], sep="-")
+ids
+```
+
+```{r}
+start.ind <- tumor.sites - 8
+end.ind <- tumor.sites + 8
+
+tumor <- NULL
+for(i in 1:length(start.ind)) {
+  tumor <- seqbind(tumor, seqs$ali[2, start.ind[i]:end.ind[i]]) }
+
+tumor
+
+```
+
+```{r}
+write.fasta(ids=ids, ali=tumor, file="subsequences.fa")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

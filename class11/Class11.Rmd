@@ -1,0 +1,148 @@
+---
+title: "Class 11: Structural Bioinformatics (Pt1)"
+author: "Kellie Lemoine"
+date: "May 8, 2019"
+output: github_document
+---
+
+```{r}
+knitr::opts_chunk$set(echo=TRUE)
+```
+
+## Revisit the PDB
+
+## downloaded a CSV file from https://www.rcsb.org/stats/summary on 2019-05-08
+
+```{r}
+db <- read.csv("../Data Export Summary.csv", row.names = 1)
+```
+
+```{r}
+##Total number of structures in the database
+
+sum(db$Total)
+```
+
+```{r}
+rowSums(db[,1:4])
+```
+
+```{r}
+##Percent of each experiment method
+
+(db$Total/sum(db$Total))*100
+```
+
+```{r}
+## What percent are protein?
+
+(sum(db$Proteins)/sum(db$Total))*100
+```
+
+## Section 3: Using Bio3D
+
+Let's read the PDB file we downloaded into R to see how things live in this place
+
+```{r}
+library(bio3d)
+```
+
+```{r}
+pdb <- read.pdb("1hsg.pdb")
+summary(pdb)
+```
+
+```{r}
+aa321(pdb$seqres)
+```
+
+```{r}
+pdb$atom
+```
+
+## Atom selection examples
+
+Let's select residue 10
+```{r}
+inds <- atom.select(pdb, resno = 10)
+```
+
+```{r}
+atom.select(pdb, resno = 10, value = TRUE)
+```
+
+```{r}
+prot <- atom.select(pdb, "protein", value = TRUE)
+prot
+```
+
+```{r}
+write.pdb(prot, file = "1hsg_protein.pdb")
+```
+
+```{r}
+lig <- atom.select(pdb, "ligand", value = TRUE)
+lig
+```
+
+```{r}
+write.pdb(lig, file = "1hsg_ligand.pdb")
+```
+
+```{r}
+install.packages("devtools")
+```
+
+```{r}
+devtools::install_bitbucket("Grantlab/bio3d-view")
+```
+
+```{r}
+install.packages("rgl")
+```
+
+
+```{r}
+library(bio3d.view)
+ 
+# view(lig, "overview", col = "sse")
+view(lig)
+```
+
+# Section 6: Muscle Alignment
+
+```{r}
+ids <- c("1TND.B", "1AGR_A", "1TAG_A","1GG2_A","1KJY_A","4G5Q_A")
+files <- get.pdb(ids, split = TRUE)
+```
+
+```{r}
+pdbs <- pdbaln(files, fit = TRUE)
+```
+
+```{r}
+view(pdbs)
+```
+
+```{r}
+pc.xray <- pca(pdbs)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
