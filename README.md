@@ -4,7 +4,7 @@ This is my coursework from [BGGN-213 at UC San Diego](https://bioboot.github.io/
 
 My class content includes:
 
-- C;ass 05: [Graphics](https://github.com/klemoine/bggn213/blob/master/Class05/Class05.md).
+- Class 05: [Graphics](https://github.com/klemoine/bggn213/blob/master/Class05/Class05.md).
 
 - Class 07: [R Functions and Packages](https://github.com/klemoine/bggn213/blob/master/Class07/Class07.md). 
 
