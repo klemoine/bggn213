@@ -18,3 +18,5 @@ My class content includes:
 
 - Class 11: [Structural Bioinformatics Pt1](https://github.com/klemoine/bggn213/blob/master/class11/Class11.md).
 
+- Class 12: [Bioinformatics in Drug Discovery and Design](https://github.com/klemoine/bggn213/blob/master/class12/Class12.md).
+
