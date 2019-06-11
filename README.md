@@ -20,3 +20,5 @@ My class content includes:
 
 - Class 12: [Bioinformatics in Drug Discovery and Design](https://github.com/klemoine/bggn213/blob/master/class12/Class12.md).
 
+- Class 13: [Genome Informatics and High Throughput Sequencing](https://github.com/klemoine/bggn213/blob/master/Class13/Class13.md).
+
