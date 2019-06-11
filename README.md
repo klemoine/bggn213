@@ -12,3 +12,5 @@ My class content includes:
 
 - Class 08: [Machine Learning](https://github.com/klemoine/bggn213/blob/master/Class08/Class08.md).
 
+- Class 09: [PCA, K-means, Hierarchical Clustering](https://github.com/klemoine/bggn213/blob/master/Class09/Class09.md).
+
