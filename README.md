@@ -30,3 +30,5 @@ My class content includes:
 
 - Class 17: [Biological Network Analysis](https://github.com/klemoine/bggn213/blob/master/Class17/Class17.md).
 
+- Class 18: [Cancer Genomics](https://github.com/klemoine/bggn213/blob/master/Class18/Class18.md).
+
