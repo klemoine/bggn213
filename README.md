@@ -26,3 +26,7 @@ My class content includes:
 
 - Class 15: [Genome Annotation and the Interpretation of Gene Lists](https://github.com/klemoine/bggn213/blob/master/Class15/Class15.md).
 
+- Class 16: [UNIX]
+
+- Class 17: [Biological Network Analysis](https://github.com/klemoine/bggn213/blob/master/Class17/Class17.md).
+
