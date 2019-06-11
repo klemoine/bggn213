@@ -22,3 +22,5 @@ My class content includes:
 
 - Class 13: [Genome Informatics and High Throughput Sequencing](https://github.com/klemoine/bggn213/blob/master/Class13/Class13.md).
 
+- Class 14: [Transcriptomics and the Analysis of RNA-seq Data](https://github.com/klemoine/bggn213/blob/master/Class14/Class14.md).
+
