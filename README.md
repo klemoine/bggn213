@@ -14,3 +14,7 @@ My class content includes:
 
 - Class 09: [PCA, K-means, Hierarchical Clustering](https://github.com/klemoine/bggn213/blob/master/Class09/Class09.md).
 
+- Class 10: [Learning about Github]
+
+- Class 11: [Structural Bioinformatics Pt1](https://github.com/klemoine/bggn213/blob/master/class11/Class11.md).
+
